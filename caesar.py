@@ -1,24 +1,30 @@
+"""
+N/A
+"""
 import string
 
-def caesar_cypher(s, k: int):
+def caesar_cypher(intake: str, amount: int) -> str:
     """
+    This function returns a string where each character is
+    shifted forwards or backwards in the alphabet by a given value.
+
     The function is expected to return a STRING.
     The function accepts following parameters:
-    1. STRING s
-    2. INTEGER k
+    1. STRING intake
+    2. INTEGER amount
     """
-    s = list(s)
+    intake = list(intake)
     letters = [
         'a','b','c','d','e','f','g','h','i','j','k','l','m',
         'n','o','p','q','r','s','t','u','v','w','x','y','z'
     ]
-    for index in range(len(s)):
-        if s[index] in string.punctuation or s[index].isnumeric():
+    for index in enumerate(intake):
+        if intake[index] in string.punctuation or intake[index].isnumeric():
             continue
-        elif s[index].isupper():
-            s[index] = s[index].lower()
-            s[index] = letters[(letters.index(s[index]) + int(k)) % 26]
-            s[index] = s[index].upper()
+        elif intake[index].isupper():
+            intake[index] = intake[index].lower()
+            intake[index] = letters[(letters.index(intake[index]) + int(amount)) % 26]
+            intake[index] = intake[index].upper()
         else:
-            s[index] = letters[(letters.index(s[index]) + int(k)) % 26]
-    return ''.join(s)
+            intake[index] = letters[(letters.index(intake[index]) + int(amount)) % 26]
+    return ''.join(intake)
