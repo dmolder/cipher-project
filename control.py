@@ -1,10 +1,18 @@
 """
 Main file, import necessary ciphers as needed
 """
-import sys
+import argparse
 from caesar import caesar_cipher
 from shuffle import shuffle
 
+parser = argparse.ArgumentParser(
+    description = 'Provides a variety of tools to assist in decoding ciphers.')
+parser.add_argument('-a','--auto',
+    action='store_true',
+    help='If analysis yields results, this mode will automatically perform the recommendation.')
+args = parser.parse_args()
+
+AUTO = args.auto
 CIPHER = str(input("Enter cipher:"))
 print("")
 def analyze(intake: str):
