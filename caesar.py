@@ -3,7 +3,7 @@ N/A
 """
 import string
 
-def caesar_cypher(intake: str, amount: int) -> str:
+def caesar_cipher(intake: str, amount: int) -> str:
     """
     This function returns a string where each character is
     shifted forwards or backwards in the alphabet by a given value.
@@ -18,7 +18,7 @@ def caesar_cypher(intake: str, amount: int) -> str:
         'a','b','c','d','e','f','g','h','i','j','k','l','m',
         'n','o','p','q','r','s','t','u','v','w','x','y','z'
     ]
-    for index in enumerate(intake):
+    for index,_ in enumerate(intake):
         if intake[index] in string.punctuation or intake[index].isnumeric():
             continue
         elif intake[index].isupper():

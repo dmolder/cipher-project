@@ -2,15 +2,11 @@
 Main file, import necessary ciphers as needed
 """
 import sys
-from caesar import caesar_cypher
+from caesar import caesar_cipher
 from shuffle import shuffle
 
-try:
-    CIPHER = sys.argv[1]
-except IndexError:
-    print("Missing cipher")
-    exit()
-
+CIPHER = str(input("Enter cipher:"))
+print("")
 def analyze(intake: str):
     """
     Initial analysis on start-up. Frequency analysis (or others)
@@ -21,7 +17,34 @@ def analyze(intake: str):
     """
     if len(intake) < 100:
         print("Analysis inconclusive - sample too small")
-        exit()
+
 
 analyze(CIPHER)
-print(shuffle(caesar_cypher(CIPHER,sys.argv[2]),2))
+while True:
+    try:
+        print(f"Current cipher: {CIPHER}")
+        MODE = int(input("""
+Please select a tool, or Ctrl+Z, then Return to exit:
+1 - Caesar cipher
+2 - Shuffle
+"""))
+    except EOFError:
+        exit()
+    if MODE == 1:
+        SHIFT = int(input("Key Amount?"))
+        print(f"Output string: {caesar_cipher(CIPHER,SHIFT)}")
+        print("")
+        REPLACE = str(input("Replace cipher(Y/N)?\n"))
+        if (REPLACE == 'Y') or (REPLACE == 'y'):
+            CIPHER = caesar_cipher(CIPHER,SHIFT)
+        continue
+    elif MODE == 2:
+        SHIFT = int(input("Shuffle size?"))
+        print(f"Output string: {shuffle(CIPHER,SHIFT)}")
+        print("")
+        REPLACE = str(input("Replace cipher(Y/N)?\n"))
+        if (REPLACE == 'Y') or (REPLACE == 'y'):
+            CIPHER = shuffle(CIPHER,SHIFT)
+        continue
+    else:
+        exit()

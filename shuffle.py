@@ -12,7 +12,7 @@ def shuffle(intake: str, amount: int) -> str:
     2. INTEGER amount
     """
     answer = list(' '*len(intake))
-    for i in enumerate(intake):
+    for i,_ in enumerate(intake):
         first = (i % amount) * int(len(intake) / amount) + int(i/amount)
         if answer[first] == ' ':
             answer[first] = intake[i]
