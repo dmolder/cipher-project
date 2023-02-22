@@ -21,7 +21,7 @@ def caesar_cipher(intake: str, amount: int) -> str:
     for index,_ in enumerate(intake):
         if intake[index] in string.punctuation or intake[index].isnumeric():
             continue
-        elif intake[index].isupper():
+        if intake[index].isupper():
             intake[index] = intake[index].lower()
             intake[index] = letters[(letters.index(intake[index]) + int(amount)) % 26]
             intake[index] = intake[index].upper()
