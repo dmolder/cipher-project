@@ -2,7 +2,7 @@
 Main file, import necessary ciphers as needed
 """
 import argparse
-from caesar import caesar_cipher
+from caesar import caesar_cipher,number_cipher
 from shuffle import shuffle
 
 parser = argparse.ArgumentParser(
@@ -34,7 +34,8 @@ while True:
         MODE = int(input("""
 Please select a tool, or Ctrl+Z, then Return to exit:
 1 - Caesar cipher
-2 - Shuffle
+2 - Number to letter
+3 - Shuffle
 """))
     except EOFError:
         exit()
@@ -47,6 +48,13 @@ Please select a tool, or Ctrl+Z, then Return to exit:
             CIPHER = caesar_cipher(CIPHER,SHIFT)
         continue
     elif MODE == 2:
+        print(f"Output string: {number_cipher(CIPHER)}")
+        print("")
+        REPLACE = str(input("Replace cipher(Y/N)?\n"))
+        if (REPLACE == 'Y') or (REPLACE == 'y'):
+            CIPHER = number_cipher(CIPHER)
+        continue
+    elif MODE == 3:
         SHIFT = int(input("Shuffle size?"))
         print(f"Output string: {shuffle(CIPHER,SHIFT)}")
         print("")
