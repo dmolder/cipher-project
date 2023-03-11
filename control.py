@@ -26,6 +26,15 @@ def analyze(intake: str):
     if len(intake) < 100:
         print("Analysis inconclusive - sample too small")
 
+def change():
+    """
+    Allow for changing string
+
+    The function accepts following parameters:
+    1. STRING intake
+    """
+    new_str = str(input("Enter cipher:"))
+    return new_str
 
 analyze(CIPHER)
 while True:
@@ -36,9 +45,14 @@ Please select a tool, or Ctrl+Z, then Return to exit:
 1 - Caesar cipher
 2 - Number to letter
 3 - Shuffle
+4 - Change input string
+
 """))
     except EOFError:
         exit()
+    except ValueError:
+        print("Invalid Entry")
+        continue
     if MODE == 1:
         SHIFT = int(input("Key Amount?"))
         print(f"Output string: {caesar_cipher(CIPHER,SHIFT)}")
@@ -62,5 +76,7 @@ Please select a tool, or Ctrl+Z, then Return to exit:
         if (REPLACE == 'Y') or (REPLACE == 'y'):
             CIPHER = shuffle(CIPHER,SHIFT)
         continue
+    elif MODE == 4:
+        CIPHER = change()
     else:
-        exit()
+        continue

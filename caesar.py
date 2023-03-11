@@ -1,5 +1,5 @@
 """
-TODO: individual cipher(i.e. using a date to change characters by different values)
+TODO: Psuedo-One time pads for obvious or guessable keys
 """
 import string
 
