@@ -2,7 +2,7 @@
 Main file, import necessary ciphers as needed
 """
 import argparse
-from caesar import caesar_cipher,number_cipher
+from caesar import caesar_cipher,number_cipher,vigenere_cipher
 from shuffle import shuffle
 
 parser = argparse.ArgumentParser(
@@ -43,9 +43,10 @@ while True:
         MODE = int(input("""
 Please select a tool, or Ctrl+Z, then Return to exit:
 1 - Caesar cipher
-2 - Number to letter
-3 - Shuffle
-4 - Change input string
+2 - Vigenère cipher
+3 - Number to letter
+4 - Shuffle
+5 - Change input string
 
 """))
     except EOFError:
@@ -62,13 +63,22 @@ Please select a tool, or Ctrl+Z, then Return to exit:
             CIPHER = caesar_cipher(CIPHER,SHIFT)
         continue
     elif MODE == 2:
+        KEY = input("Key?")
+        REPEAT = str(input("Repeat? (true/false) "))
+        print(f"Output string: {vigenere_cipher(CIPHER,KEY,REPEAT)}")
+        print("")
+        REPLACE = str(input("Replace cipher(Y/N)?\n"))
+        if (REPLACE == 'Y') or (REPLACE == 'y'):
+            CIPHER = vigenere_cipher(CIPHER,KEY,REPEAT)
+        continue
+    elif MODE == 3:
         print(f"Output string: {number_cipher(CIPHER)}")
         print("")
         REPLACE = str(input("Replace cipher(Y/N)?\n"))
         if (REPLACE == 'Y') or (REPLACE == 'y'):
             CIPHER = number_cipher(CIPHER)
         continue
-    elif MODE == 3:
+    elif MODE == 4:
         SHIFT = int(input("Shuffle size?"))
         print(f"Output string: {shuffle(CIPHER,SHIFT)}")
         print("")
@@ -76,7 +86,7 @@ Please select a tool, or Ctrl+Z, then Return to exit:
         if (REPLACE == 'Y') or (REPLACE == 'y'):
             CIPHER = shuffle(CIPHER,SHIFT)
         continue
-    elif MODE == 4:
+    elif MODE == 5:
         CIPHER = change()
     else:
         continue
